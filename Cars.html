@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="ar" lang="ar" dir="rtl">
+  <head>
+    <title>السيارات | شركة إيجار السيارات</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" type="text/css" href="style.css" />
+    <script type="text/javascript" src="jquery.min.js"></script>
+    <script type="text/javascript" src="myFunctions.js"></script>
+  </head>
+  <body>
+    <div class="page-shell">
+      <div class="site-header">
+        <div class="brand-block">
+          <div class="brand-mark">إ</div>
+          <div class="brand-text">
+            <h1>شركة إِجَار السيارات</h1>
+            <span>Al-Ramla Rent-a-Car</span>
+          </div>
+        </div>
+        <div class="main-nav" aria-label="قائمة التنقل الرئيسية">
+          <a href="home.html">الرئيسية</a>
+          <a href="AboutUs.html">من نحن</a>
+          <a href="Cars.html" class="current-page">السيارات</a>
+        </div>
+      </div>
+
+      <div class="content-panel">
+        <h2>السيارات المتاحة</h2>
+        <p class="intro-text">
+          يمكنك اختيار سيارة أو أكثر ثم متابعة النموذج الخاص بالحجز، مع إمكانية إظهار تفاصيل
+          كل سيارة بشكل مستقل دون اختيارها تلقائياً.
+        </p>
+
+        <table class="car-table" id="vehicleTable">
+          <thead>
+            <tr>
+              <th>الصورة</th>
+              <th>رمز السيارة</th>
+              <th>الموديل</th>
+              <th>سنة التصنيع</th>
+              <th>السعر اليومي</th>
+              <th>إظهار التفاصيل</th>
+              <th>اختيار</th>
+            </tr>
+          </thead>
+          <tbody id="vehicleTableBody"></tbody>
+        </table>
+
+        <div class="selection-action">
+          <div id="selectionError" class="error-message"></div>
+          <button type="button" id="continueBtn" class="primary-button">متابعة</button>
+        </div>
+
+        <div id="reservationFormContainer" class="reservation-form-wrapper hidden">
+          <form id="reservationForm" action="#" method="post">
+            <fieldset>
+              <legend>بيانات الحجز</legend>
+
+              <div class="form-grid">
+                <div class="field-group">
+                  <label for="fullName">الاسم الكامل</label>
+                  <input type="text" id="fullName" name="fullName" value="" />
+                  <span class="error-message" id="fullNameError"></span>
+                </div>
+
+                <div class="field-group">
+                  <label for="nationalId">الرقم الوطني</label>
+                  <input type="text" id="nationalId" name="nationalId" value="" />
+                  <span class="error-message" id="nationalIdError"></span>
+                </div>
+
+                <div class="field-group">
+                  <label for="startDate">تاريخ بداية التأجير</label>
+                  <input type="date" id="startDate" name="startDate" value="" />
+                  <span class="error-message" id="startDateError"></span>
+                </div>
+
+                <div class="field-group">
+                  <label for="endDate">تاريخ نهاية التأجير</label>
+                  <input type="date" id="endDate" name="endDate" value="" />
+                  <span class="error-message" id="endDateError"></span>
+                </div>
+
+                <div class="field-group">
+                  <label for="mobileNumber">رقم الموبايل</label>
+                  <input type="text" id="mobileNumber" name="mobileNumber" value="" />
+                  <span class="error-message" id="mobileNumberError"></span>
+                </div>
+
+                <div class="field-group">
+                  <label for="email">البريد الإلكتروني</label>
+                  <input type="text" id="email" name="email" value="" />
+                  <span class="error-message" id="emailError"></span>
+                </div>
+              </div>
+
+              <div class="form-actions">
+                <button type="submit" class="primary-button">حفظ الحجز</button>
+              </div>
+            </fieldset>
+          </form>
+        </div>
+
+        <div id="resultPanel" class="result-window">
+          <div class="result-header">
+            <h3>نتيجة الحجز</h3>
+            <button type="button" id="closeResultBtn" class="close-button">إغلاق</button>
+          </div>
+          <div id="resultContent"></div>
+        </div>
+      </div>
+
+      <div class="site-footer">
+        <p>© 2026 شركة إِجَار السيارات | خدمة الحجز المباشر</p>
+      </div>
+    </div>
+  </body>
+</html>
