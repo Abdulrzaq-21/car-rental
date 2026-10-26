@@ -101,13 +101,13 @@ function renderVehicleTable() {
 
   $.each(vehicleInventory, function (index, vehicle) {
     html += '<tr data-code="' + vehicle.code + '">';
-    html += '<td><img class="vehicle-thumb" src="images/' + vehicle.image + '" alt="' + vehicle.model + '" /></td>';
-    html += '<td>' + vehicle.code + '</td>';
-    html += '<td>' + vehicle.model + '</td>';
-    html += '<td>' + vehicle.year + '</td>';
-    html += '<td>' + formatCurrency(vehicle.dailyPrice) + '</td>';
-    html += '<td><input type="checkbox" class="details-toggle" id="details-' + vehicle.code + '" data-code="' + vehicle.code + '" /><label for="details-' + vehicle.code + '">إظهار</label></td>';
-    html += '<td><input type="checkbox" class="vehicle-select" id="select-' + vehicle.code + '" data-code="' + vehicle.code + '" data-model="' + vehicle.model + '" /></td>';
+    html += '<td data-label="اختيار"><input type="checkbox" class="vehicle-select" id="select-' + vehicle.code + '" data-code="' + vehicle.code + '" data-model="' + vehicle.model + '" /></td>';
+    html += '<td data-label="إظهار التفاصيل"><input type="checkbox" class="details-toggle" id="details-' + vehicle.code + '" data-code="' + vehicle.code + '" /><label for="details-' + vehicle.code + '">إظهار</label></td>';
+    html += '<td data-label="السعر اليومي">' + formatCurrency(vehicle.dailyPrice) + '</td>';
+    html += '<td data-label="سنة التصنيع">' + vehicle.year + '</td>';
+    html += '<td data-label="الموديل">' + vehicle.model + '</td>';
+    html += '<td data-label="رمز السيارة">' + vehicle.code + '</td>';
+    html += '<td data-label="الصورة"><img class="vehicle-thumb" src="images/' + vehicle.image + '" alt="' + vehicle.model + '" /></td>';
     html += '</tr>';
 
     html += '<tr class="detail-row hidden" data-code="' + vehicle.code + '">';
@@ -376,11 +376,11 @@ function displayReservationResult(summary) {
 
   $.each(summary.selectedVehicles, function (index, item) {
     message += '<tr>';
-    message += '<td>' + item.code + '</td>';
-    message += '<td>' + item.model + '</td>';
-    message += '<td>' + formatCurrency(item.dailyPrice) + '</td>';
-    message += '<td>' + item.rentalDays + '</td>';
-    message += '<td>' + formatCurrency(item.individualCost) + '</td>';
+    message += '<td data-label="رمز السيارة">' + item.code + '</td>';
+    message += '<td data-label="الموديل">' + item.model + '</td>';
+    message += '<td data-label="السعر اليومي">' + formatCurrency(item.dailyPrice) + '</td>';
+    message += '<td data-label="أيام التأجير">' + item.rentalDays + '</td>';
+    message += '<td data-label="إجمالي السيارة">' + formatCurrency(item.individualCost) + '</td>';
     message += '</tr>';
   });
 

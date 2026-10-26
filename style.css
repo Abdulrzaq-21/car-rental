@@ -247,7 +247,7 @@ p {
 
 .selection-action {
   margin-top: 20px;
-  text-align: left;
+  text-align: right;
 }
 
 .primary-button,
@@ -432,22 +432,81 @@ legend {
   color: #526c82;
 }
 
-@media screen and (max-width: 760px) {
+/* =========================================================
+   Responsive rules
+   Breakpoints: 1024 (tablet landscape) / 900 / 760 (phones &
+   small tablets - tables become cards) / 480 / 360
+   ========================================================= */
+
+/* ---------- Tablets & small laptops (<= 1024px) ---------- */
+@media screen and (max-width: 1024px) {
+  .page-shell {
+    padding: 16px 12px 32px;
+  }
+
+  .site-header {
+    padding: 16px 18px;
+  }
+
+  .content-panel {
+    padding: 22px 18px 26px;
+  }
+
+  .student-table th,
+  .student-table td,
+  .branch-table th,
+  .branch-table td,
+  .car-table th,
+  .car-table td {
+    padding: 9px 8px;
+    font-size: 0.95em;
+  }
+
+  .vehicle-thumb {
+    width: 76px;
+    height: 52px;
+  }
+}
+
+/* ---------- Tablets portrait (<= 900px) ---------- */
+@media screen and (max-width: 900px) {
   .site-header {
     flex-direction: column;
     align-items: flex-start;
   }
 
-  .brand-block {
-    width: 100%;
-  }
-
+  .brand-block,
   .main-nav {
     width: 100%;
   }
 
+  .student-table th,
+  .student-table td,
+  .branch-table th,
+  .branch-table td,
+  .car-table th,
+  .car-table td {
+    padding: 8px 6px;
+    font-size: 0.9em;
+  }
+
+  .vehicle-thumb {
+    width: 64px;
+    height: 44px;
+  }
+
+  .detail-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+/* ---------- Phones & small tablets (<= 760px) ---------- */
+@media screen and (max-width: 760px) {
   .info-grid,
-  .form-grid,
+  .form-grid {
+    grid-template-columns: 1fr;
+  }
+
   .detail-grid {
     grid-template-columns: 1fr;
   }
@@ -463,5 +522,211 @@ legend {
   .main-nav a {
     width: 100%;
     text-align: center;
+  }
+
+  h2 {
+    font-size: 1.6em;
+  }
+
+  h3 {
+    font-size: 1.25em;
+  }
+
+  .selection-action {
+    text-align: right;
+  }
+
+  .form-actions .primary-button {
+    width: 100%;
+  }
+
+  /* ----- Tables -> stacked cards ----- */
+  .student-table,
+  .branch-table,
+  .car-table,
+  .result-table {
+    border: 0;
+    display: block;
+    width: 100%;
+  }
+
+  .student-table thead,
+  .branch-table thead,
+  .car-table thead,
+  .result-table thead {
+    /* hidden visually, still available to screen readers */
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    clip: rect(0 0 0 0);
+    white-space: nowrap;
+  }
+
+  .student-table tbody,
+  .branch-table tbody,
+  .car-table tbody,
+  .result-table tbody {
+    display: block;
+  }
+
+  .student-table tr,
+  .branch-table tr,
+  .car-table tr,
+  .result-table tr {
+    display: block;
+    background: #ffffff;
+    border: 1px solid #d6e0eb;
+    border-radius: 10px;
+    margin-bottom: 14px;
+    overflow: hidden;
+    box-shadow: 0 2px 8px rgba(18, 52, 86, 0.05);
+  }
+
+  .student-table tbody tr:nth-child(even),
+  .branch-table tbody tr:nth-child(even),
+  .car-table tbody tr:nth-child(even) {
+    background: #ffffff;
+  }
+
+  .student-table td,
+  .branch-table td,
+  .car-table td,
+  .result-table td {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 14px;
+    border: 0;
+    border-bottom: 1px solid #e8eff6;
+    padding: 10px 14px;
+    text-align: right;
+    font-size: 1em;
+    word-break: break-word;
+    overflow-wrap: anywhere;
+  }
+
+  .student-table td:last-child,
+  .branch-table td:last-child,
+  .car-table td:last-child,
+  .result-table td:last-child {
+    border-bottom: 0;
+  }
+
+  /* label shown before each value (from data-label) */
+  .student-table td[data-label]::before,
+  .branch-table td[data-label]::before,
+  .car-table td[data-label]::before,
+  .result-table td[data-label]::before {
+    content: attr(data-label);
+    flex: 0 0 auto;
+    max-width: 45%;
+    font-weight: bold;
+    color: #123456;
+    text-align: right;
+  }
+
+  /* values stay on the opposite side, left-aligned in RTL */
+  .student-table td[data-label],
+  .branch-table td[data-label],
+  .result-table td[data-label],
+  .car-table td[data-label] {
+    text-align: left;
+  }
+
+  /* English / ID values must keep LTR reading direction */
+  .student-table td[data-label="Student Full Name"],
+  .student-table td[data-label="University ID"] {
+    direction: ltr;
+    flex-direction: row-reverse;
+  }
+
+  .student-table td[data-label="Student Full Name"]::before,
+  .student-table td[data-label="University ID"]::before {
+    direction: rtl;
+  }
+
+  /* Cars: picture cell on top, centred, no label */
+  .car-table td[data-label="الصورة"] {
+    justify-content: center;
+    background: #f3f8fc;
+    padding: 12px;
+  }
+
+  .car-table td[data-label="الصورة"]::before {
+    display: none;
+  }
+
+  .vehicle-thumb {
+    width: 100%;
+    max-width: 260px;
+    height: auto;
+    aspect-ratio: 90 / 62;
+  }
+
+  .car-table td[data-label="إظهار التفاصيل"] label {
+    cursor: pointer;
+    color: #0b63b4;
+    font-weight: bold;
+  }
+
+  .details-toggle,
+  .vehicle-select {
+    width: 22px;
+    height: 22px;
+    cursor: pointer;
+    margin: 0 0 0 6px;
+  }
+
+  /* details row: attached under its car card */
+  .car-table tr.detail-row.hidden {
+    display: none;
+  }
+
+  .car-table tr.detail-row {
+    margin-top: -14px;
+    border-top: 0;
+    border-top-left-radius: 0;
+    border-top-right-radius: 0;
+    background: #fafcfb;
+  }
+
+  .car-table tr:has(+ .detail-row:not(.hidden)) {
+    margin-bottom: 0;
+    border-bottom-left-radius: 0;
+    border-bottom-right-radius: 0;
+  }
+
+  .car-table .detail-row td {
+    display: block;
+    padding: 0;
+    text-align: right;
+  }
+
+  .detail-panel {
+    padding: 14px;
+  }
+
+  /* result popup */
+  .result-window {
+    width: 94%;
+    max-height: 88vh;
+  }
+
+  .result-header {
+    padding: 12px 14px;
+  }
+
+  .result-body {
+    padding: 14px;
+  }
+}
+
+
+
+/* ---------- Landscape phones: keep popup usable ---------- */
+@media screen and (max-height: 480px) and (orientation: landscape) {
+  .result-window {
+    max-height: 94vh;
   }
 }
